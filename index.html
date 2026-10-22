@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jiri Nechleba</title>
+<meta name="description" content="Pictures that dance to equations. Founder of Galilex — dimensional computing, analytical systems, and the geometry of hard problems.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ── Token system ──────────────────────────────────────────────────
+   Layout: single centered column, typographic rhythm, one ruled accent
+   Color:  warm off-white ground, deep ink, muted gold
+   Type:   EB Garamond display + body, DM Mono for data/labels
+───────────────────────────────────────────────────────────────────── */
+:root {
+  --bg:        #f6f4ef;
+  --bg-alt:    #edeae2;
+  --fg:        #1a1814;
+  --fg-mid:    #5a5650;
+  --fg-dim:    #9a9690;
+  --rule:      #c8c2b4;
+  --gold:      #8b7040;
+  --gold-dim:  #b09a6a;
+
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #141210;
+    --bg-alt:   #1e1c18;
+    --fg:       #e8e4dc;
+    --fg-mid:   #a0998e;
+    --fg-dim:   #5c5850;
+    --rule:     #3a3630;
+    --gold:     #c4a85a;
+    --gold-dim: #8b7040;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-serif);
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.65;
+  padding-left:  max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+
+/* ── Structural container ── */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+/* ── Header ── */
+header {
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 0.25em;
+  color: var(--fg);
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+
+/* ── Rule divider ── */
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: clamp(2rem, 5vw, 3.5rem) 0;
+}
+
+.rule-gold {
+  border-top-color: var(--gold-dim);
+}
+
+/* ── Quotes block ── */
+.quotes {
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.quote-block {
+  margin: 0 0 2.2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--rule);
+  position: relative;
+}
+
+.quote-block:last-child { margin-bottom: 0; }
+
+.quote-block.primary {
+  border-left-color: var(--gold-dim);
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.05em;
+  line-height: 1.55;
+  color: var(--fg);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+
+.quote-attr {
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.06em;
+  color: var(--fg-mid);
+  text-transform: uppercase;
+}
+
+.quote-attr em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* ── Bio sections ── */
+.section {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin: 0 0 0.7em;
+}
+
+.section p {
+  margin: 0 0 0.9em;
+  color: var(--fg);
+  max-width: 62ch;
+}
+
+.section p:last-child { margin-bottom: 0; }
+
+/* ── Focus list ── */
+.focus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.focus-list li {
+  display: grid;
+  grid-template-columns: 1.2em 1fr;
+  gap: 0.6em;
+  align-items: baseline;
+  color: var(--fg);
+  max-width: 62ch;
+}
+
+.focus-list li::before {
+  content: '—';
+  color: var(--gold-dim);
+  font-weight: 400;
+}
+
+/* ── Contact ── */
+.contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  color: var(--fg-mid);
+}
+
+.contact-line .location {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: var(--fg-dim);
+}
+
+/* ── Footer ── */
+footer {
+  margin-top: clamp(3rem, 8vw, 5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  letter-spacing: 0.06em;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+}
+
+.footer-link {
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.footer-link:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <h1 class="name">Jiri Nechleba</h1>
+    <p class="tagline">Pictures that dance to equations</p>
+  </header>
+
+  <hr class="rule rule-gold">
+
+  <div class="quotes">
+    <blockquote class="quote-block">
+      <p class="quote-text">"The universe is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures; without these, one wanders about in a dark labyrinth."</p>
+      <p class="quote-attr">— Galileo Galilei, <em>Il Saggiatore</em>, 1623</p>
+    </blockquote>
+
+    <blockquote class="quote-block primary">
+      <p class="quote-text">"The universe is filled with pictures that dance to equations."</p>
+      <p class="quote-attr">— Jiri Nechleba, <em>2026</em></p>
+    </blockquote>
+  </div>
+
+  <hr class="rule">
+
+  <div class="section">
+    <p class="section-label">Work</p>
+    <p>Today, building analytical systems where the geometry of the problem is the solution — dimensional engines that represent business reality the way physics represents the natural world: as structure, not as stored state.</p>
+    <p>Four decades of advising and leading businesses around a constant thread: the solution to hard problems is rooted in finding the right, canonical representation. Across CPG, pharma, finance, media, information technology, and retail — at Nielsen, Gannett, Citigroup, Eli Lilly, and others — insights that created and released value for countless companies.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Current focus</p>
+    <p>I am the founder of <strong>Galilex</strong>, a company built on the proposition that the right geometric representation eliminates the epicycles and reveals the essence of a problem.</p>
+    <ul class="focus-list">
+      <li>aiR — a dimensional compute platform fusing deterministic OLAP with LLM reasoning</li>
+      <li>DataPrizm — commercial analytical tools built on the same geometric foundation</li>
+      <li>Board and advisory roles in retail analytics and AI infrastructure</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Background</p>
+    <p>MIT Physics and Earth &amp; Planetary Sciences, 1978. Started with Express at Management Decision Systems — where the platform was invented, working alongside John DC Little, Len Lodish, and Glen Urban.</p>
+    <p>Built and led 4R Systems, a retail inventory optimization company applying risk-theory methods to supply chain. Deep history with Oracle/IRI Express OLAP from the 1980s through the 1990s.</p>
+    <p>Now semi-retired and building the next thing.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="contact-line">
+    <span>jiri@nechleba.com</span>
+    <span class="location">Devon, PA · New York · Pontremoli, Italy</span>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 Nechleba LLC</span>
+    <a href="https://www.linkedin.com/in/jiri-nechleba-713363/" class="footer-link" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
